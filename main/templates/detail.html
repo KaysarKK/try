@@ -1,0 +1,64 @@
+<!-- Loads the path to your static files -->
+
+
+<head>
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'index.css' %}" />
+</head>
+  <body>
+    <body>
+
+  <div class="header">
+      <p style="font-size:70px; text-align:center; color:white;">Senior Project</p>
+  </div>
+
+  <ul>
+  <li><a class="active" href="../">Home</a></li>
+  <li><a href="../data">Data</a></li>
+  <li><a href="../graph">Graph</a></li>
+</ul>
+
+<div class="polaroid">
+  <div class="container">
+    <div class="container2">
+        <img src="{{ city.Photo }}" alt="Avatar" class="image" style="width: 100%">
+        <div class="overlay">
+            <div class="text">
+                {{ city.Name }}, {{ city.Country }}
+            </div>
+        </div>
+        <p style="text-align:center;font-size:20px;"> {{ city.Info }}</p>
+
+    </div>
+  </div>
+</div>
+{% if error_message %}
+<p><strong>{{ error_message }}</strong></p>
+{% endif %}
+
+
+
+    <ul>
+    <h2>List of sensors in the city </h2>
+    {% csrf_token %}
+    {% for device in city.device_set.all %}
+       
+            <h3 style="margin-left: 5%; width: 100px; align-self: center;">
+            <!---->
+            <a href="{% url 'detail_city_inside' city.id device.id%}">
+            {{ device.place }}
+            </h3>
+<br>
+    {% endfor %}
+    </ul>
+    
+</form>
+
+<h4>.</h4>
+
+<footer>
+  <nav class="footer-nav" role="navigation">
+    <p>Copyright &copy; 2018-
+      <?php echo date("Y"); ?> Bakyt Nazirov, Kaisar Kassenov. All rights reserved.</p>
+  </nav>
+</footer>

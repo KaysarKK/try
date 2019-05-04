@@ -1,0 +1,57 @@
+<head>
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'index.css' %}" />
+</head>
+
+    <body>
+
+  <div class="header">
+      <p style="font-size:70px; text-align:center; color:white;">Senior Project</p>
+  </div>
+
+  <ul>
+  <li><a class="active" href="../">Home</a></li>
+
+  <li><a href="">Data</a></li>
+  <li><a href="../graph">Graph</a></li>
+</ul>
+<table>
+  <thead>
+  <tr>
+    <th>Address</th>
+    <th>Temperature</th>
+    <th>Humidity level</th>
+    <th>Date-Time</th>
+  </tr>
+  </thead>
+  <tbody>
+    {% csrf_token %}
+    {% for info in all_info %}
+        
+          <tr>
+            <td> {{ info.device }} </td>
+            <td> {{info.temp}} </td>
+            <td> {{info.humidity}} </td> 
+            <td> {{info.date}} </td>
+          </tr>
+            
+        <br>
+    {% endfor %}
+  </tbody>
+</table>
+<button style="height:'5%'; width: '10%'">
+  
+<a class="active" href="{% url 'download'%}">Dowloand CSV</a>
+</button>
+
+<button>
+  <a href="../info"> Get json</a>
+</button>
+
+</body>
+<footer style="margin-top: 60%">
+  <nav class="footer-nav" role="navigation">
+    <p>Copyright &copy; 2018-
+      <?php echo date("Y"); ?> Bakyt Nazirov, Kaisar Kassenov. All rights reserved.</p>
+  </nav>
+</footer>
